@@ -9,28 +9,25 @@ class Atividade {
 }
 
 const listaDeAtividades = [];
+// var listaAtividades = document.getElementById("listaAtividades");
+// Função para exibir os itens do array na lista
+// function exibirItens (atividade) {
+//   listaAtividades.innerHTML = ""; // Limpa a lista atual
+//   for (var i = 0; i < listaDeAtividades.length; i++) {
+//     var li = document.createElement("li");
+//     // item.appendChild(document.createTextNode(listaDeAtividades[i]));
+//     li.innerText = `Nome: ${atividade.nome} - Descrição: ${atividade.descricao} - Responsável: ${atividade.responsavel}`;
+//     listaAtividades.appendChild(li);
+//   }
+// }
 
-var listaAtividades = document.getElementById("listaAtividades");
-
-        // Função para exibir os itens do array na lista
-        function exibirItens(atividade) {
-          listaAtividades.innerHTML = ""; // Limpa a lista atual
-
-            for (var i = 0; i < listaDeAtividades.length; i++) {
-                var li = document.createElement("li");
-                // item.appendChild(document.createTextNode(listaDeAtividades[i]));
-                li.innerText = `Nome: ${atividade.nome} - Descrição: ${atividade.descricao} - Responsável: ${atividade.responsavel}`;
-                listaAtividades.appendChild(item);
-            }
-        }
-
-// const adicionarAtividadeHtml = (atividade) => {
-//   const listaAtividades = document.getElementById("listaAtividades");
+const adicionarAtividadeHtml = (atividade) => {
+  const listaAtividades = document.getElementById("listaAtividades");
   // listaAtividades.innerHTML = "";
-  // const li = document.createElement("li");
-  // li.innerText = `Nome: ${atividade.nome} - Descrição: ${atividade.descricao} - Responsável: ${atividade.responsavel}`;
-  // listaAtividades.appendChild(li);
-// };
+  const li = document.createElement("li");
+  li.innerText = `Nome: ${atividade.nome} - Descrição: ${atividade.descricao} - Responsável: ${atividade.responsavel}`;
+  listaAtividades.appendChild(li);
+};
 
 //ADICIONAR UMA ATIVIDADE
 const adicionarAtividade = (nome, descricao, responsavel) => {
@@ -45,10 +42,10 @@ const adicionarAtividade = (nome, descricao, responsavel) => {
     alert("Atividade já cadastrada!");
     return;
   }
-    const novaAtividade = new Atividade(nome, descricao, responsavel);
-    listaDeAtividades.push(novaAtividade);
-  // adicionarAtividadeHtml(novaAtividade);
-  exibirItens();
+  const novaAtividade = new Atividade(nome, descricao, responsavel);
+  listaDeAtividades.push(novaAtividade);
+  adicionarAtividadeHtml(novaAtividade);
+  // exibirItens();
   console.log(listaDeAtividades);
 };
 
@@ -59,10 +56,10 @@ const removerAtividade = (nome) => {
     return atividade.nome === nome;
   });
   listaDeAtividades.splice(index, 1);
-  // adicionarAtividadeHtml(listaDeAtividades);
-  exibirItens();
+  adicionarAtividadeHtml(listaDeAtividades);
+  // exibirItens();
   console.log(listaDeAtividades);
-}
+};
 
 //PESQUISAR UMA ATIVIDADE
 const buscarAtividade = (nome) => {
@@ -71,10 +68,10 @@ const buscarAtividade = (nome) => {
     return atividade.nome === nome;
   });
   adicionarAtividadeHtml(atividade);
+  //exibirItens();
   console.log(listaDeAtividades);
   return atividade;
-
-}
+};
 
 //EDITAR DESCRICAO DE UMA ATIVIDADE
 const editarDescricaoAtividade = (nome, novaDescricao) => {
@@ -82,5 +79,6 @@ const editarDescricaoAtividade = (nome, novaDescricao) => {
   novaDescricao = prompt("Informe a nova descricao:");
   atividade.descricao = novaDescricao;
   adicionarAtividadeHtml(atividade);
+  //exibirItens();
   console.log(listaDeAtividades);
 };
